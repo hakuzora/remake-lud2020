@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private float increaseSpeed = 1f;
     [SerializeField] float movSpeed = 5f;
     public bool isWalking;
+    public bool isUp;
+    public bool isRight;
     
 
     void Update()
@@ -44,10 +46,13 @@ public class PlayerController : MonoBehaviour
         }
         
         inputVector = inputVector.normalized;
+
         Vector3 movDir = new Vector3(inputVector.x, inputVector.y, 0f);
         transform.position += movDir * movSpeed * increaseSpeed * Time.deltaTime;
 
         isWalking = movDir != Vector3.zero;
+        isUp = movDir == Vector3.up;
+        isRight = movDir == Vector3.right;
 
         //This section is for Use button
 
@@ -63,5 +68,13 @@ public class PlayerController : MonoBehaviour
     public bool IsWalking()
     {
         return isWalking;
+    }
+    public bool IsUp()
+    {
+        return isUp;
+    }
+    public bool IsRight()
+    {
+        return isRight;
     }
 }
